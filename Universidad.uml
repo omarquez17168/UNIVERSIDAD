@@ -1,0 +1,60 @@
+@startuml
+class Universidad {
+    - nombre: String
+    - rector: String
+    - ciudad: String
+}
+
+class Facultad {
+    - codigo: int
+    - nombre: String
+}
+
+class Profesor {
+    - profesion: String
+    - nacionalidad: String
+    - sueldo: double
+}
+
+class Estudiante {
+    - colegio: String
+    - fechaIngreso: LocalDate
+}
+
+class Carrera {
+    - nombre: String
+    - creditosTotales: int
+    - semestres: int
+    - nivel: NivelCarrera
+}
+
+class Curso {
+    - codigo: int
+    - nombre: String
+    - creditos: int
+    - salon: int
+    - edificio: String
+}
+
+enum NivelCarrera {
+    PREGRADO
+    POSTGRADO
+}
+
+class Persona {
+    - cedula: String
+    - nombre: String
+    - fechaNacimiento: LocalDate
+    - lugarNacimiento: String
+}
+
+Universidad --> "*" Facultad
+Facultad --> "*" Profesor
+Facultad --> "*" Carrera
+Carrera --> "*" Curso
+Carrera --> "*" Estudiante
+Curso --> "*" Profesor
+Curso --> "*" Estudiante
+Profesor --|> Persona
+Estudiante --|> Persona
+@enduml
